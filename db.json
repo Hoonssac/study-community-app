@@ -1,0 +1,136 @@
+{
+  "studies": [
+    {
+      "id": 1,
+      "title": "Vue 입문 스터디",
+      "desc": "Composition API 중심의 Vue 학습",
+      "category": "프론트엔드",
+      "dueDate": "2025-04-20",
+      "createdAt": "2025-03-25",
+      "likes": 5,
+      "max": 10
+    },
+    {
+      "id": 2,
+      "title": "React 실전 프로젝트",
+      "desc": "React로 웹앱 하나 완성해보자",
+      "category": "프론트엔드",
+      "dueDate": "2025-05-10",
+      "createdAt": "2025-03-22",
+      "likes": 3,
+      "max": 8
+    },
+    {
+      "id": 3,
+      "title": "Node.js 백엔드 입문",
+      "desc": "Express, MongoDB 기초부터",
+      "category": "백엔드",
+      "dueDate": "2025-04-25",
+      "createdAt": "2025-03-20",
+      "likes": 2,
+      "max": 7
+    },
+    {
+      "id": 4,
+      "title": "ChatGPT 활용 스터디",
+      "desc": "업무 자동화와 프롬프트 작성법",
+      "category": "AI",
+      "dueDate": "2025-04-15",
+      "createdAt": "2025-03-21",
+      "likes": 10,
+      "max": 12
+    },
+    {
+      "id": 5,
+      "title": "면접 스터디 (CS 중심)",
+      "desc": "자료구조/네트워크/운영체제 중심",
+      "category": "CS",
+      "dueDate": "2025-04-13",
+      "createdAt": "2025-03-19",
+      "likes": 6,
+      "max": 6
+    },
+    {
+      "id": 6,
+      "title": "코딩 테스트 준비반",
+      "desc": "백준 골드 문제 풀이 매일 진행",
+      "category": "알고리즘",
+      "dueDate": "2025-04-28",
+      "createdAt": "2025-03-28",
+      "likes": 4,
+      "max": 10
+    },
+    {
+      "id": 7,
+      "title": "Figma로 UI 디자인",
+      "desc": "디자이너 지망생을 위한 실습형 스터디",
+      "category": "디자인",
+      "dueDate": "2025-05-01",
+      "createdAt": "2025-03-26",
+      "likes": 7,
+      "max": 5
+    },
+    {
+      "id": 8,
+      "title": "데이터 분석 with Python",
+      "desc": "Pandas, Matplotlib, 실습 기반",
+      "category": "데이터 분석",
+      "dueDate": "2025-04-29",
+      "createdAt": "2025-03-24",
+      "likes": 5,
+      "max": 9
+    },
+    {
+      "id": 9,
+      "title": "IT 자격증 (정보처리기사)",
+      "desc": "이론 + 기출문제 풀이 중심",
+      "category": "자격증",
+      "dueDate": "2025-04-19",
+      "createdAt": "2025-03-23",
+      "likes": 3,
+      "max": 15
+    },
+    {
+      "id": 10,
+      "title": "유튜브 채널 함께 키우기",
+      "desc": "영상편집, 기획, 운영 노하우 공유",
+      "category": "크리에이티브",
+      "dueDate": "2025-05-05",
+      "createdAt": "2025-03-29",
+      "likes": 9,
+      "max": 6
+    }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "studyId": 1,
+      "name": "홍길동",
+      "contact": "010-1111-1111"
+    },
+    {
+      "id": 2,
+      "studyId": 1,
+      "name": "김코딩",
+      "contact": "010-2222-2222"
+    },
+    {
+      "id": 3,
+      "studyId": 2,
+      "name": "박디자이너",
+      "contact": "010-3333-3333"
+    },
+    {
+      "id": 4,
+      "studyId": 4,
+      "name": "이프롬프트",
+      "contact": "010-4444-4444"
+    },
+    {
+      "id": 5,
+      "studyId": 6,
+      "name": "최테스트",
+      "contact": "010-5555-5555"
+    }
+  ]
+}
