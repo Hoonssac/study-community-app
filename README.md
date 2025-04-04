@@ -2,6 +2,10 @@
 
 Vue.js로 스터디 모집 커뮤니티 "스터디제이"를 만들어보자!
 
+![](https://github.com/user-attachments/assets/b6e9f02a-5739-459a-acd9-e86fed05d3b3) | ![](https://github.com/user-attachments/assets/7c07f7b9-3d62-494b-92eb-3df88207f6aa)
+---|---|
+
+
 # 🎯 기능 요구사항
 
 ## 1. 스터디 목록 조회 + 필터 + 정렬
