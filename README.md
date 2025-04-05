@@ -89,7 +89,7 @@
 - 등록 버튼은 `StudyList.vue` 목록 페이지 상단에 존재
 - 클릭 시 `/studies/add`로 이동
 
-```
+```js
 <router-link to="/studies/add" class="btn btn-primary mb-3">
   ➕ 스터디 등록
 </router-link>
@@ -109,10 +109,10 @@
 - 증가된 값은 즉시 화면에 반영되어야 한다.
 - 서버에도 `axios.put()` 요청으로 반영해야 한다.
 
-```
-const updated = { ...study.value, likes: study.value.likes + 1 }
-await axios.put(`/api/studies/${id}`, updated)
-study.value.likes++
+```js
+const updated = { ...study.value, likes: study.value.likes + 1 };
+await axios.put(`/api/studies/${id}`, updated);
+study.value.likes++;
 ```
 
 ### ✅ 목록 페이지 동기화 처리
@@ -121,7 +121,7 @@ study.value.likes++
   **좋아요 수가 최신 상태로 반영되어 있어야 한다.**
 - 이를 위해 상위에서 제공한 `fetchStudyList()` 함수를 **좋아요 클릭 후에 호출**한다.
 
-```
+```js
 const { fetchStudyList } = inject('actions')
 
 await axios.put(...)
@@ -132,8 +132,6 @@ fetchStudyList() // ✅ 목록 새로고침
 ### ✅ 새로고침해도 반영 유지
 
 - 좋아요 수는 서버(JSON Server)에 반영되므로, 새로고침해도 반영된 상태 유지
-
----
 
 ## 📌 4. 스터디 수정 기능 구현 + 목록 반영 처리
 
@@ -179,10 +177,83 @@ fetchStudyList() // ✅ 목록 새로고침
 
 - `/studies/:id` 페이지에 수정 버튼 추가
 
-```
+```js
 <router-link :to="`/studies/${study.id}/edit`" class="btn btn-warning">
   ✏️ 수정하기
 </router-link>
+```
+
+## 📌 5. 스터디 신청 기능 구현 + 신청자 목록 표시
+
+### ✅ 신청 버튼 표시
+
+- 상세 페이지(`/studies/:id`)에 아래 버튼 추가:
+
+```js
+<router-link :to="`/studies/${study.id}/apply`" class="btn btn-success">
+  ✅ 신청하기
+</router-link>
+```
+
+- 버튼을 누르면 신청 폼 페이지(`/studies/:id/apply`)로 이동
+
+### ✅ 신청 페이지 폼 구성
+
+- 컴포넌트: `StudyApply.vue`
+- URL: `/studies/:id/apply`
+- 사용자 입력 항목:
+- 사용자 입력 항목:
+
+| 항목   | 필드명    | 입력 형태                              |
+| ------ | --------- | -------------------------------------- |
+| 이름   | `name`    | 텍스트 입력                            |
+| 연락처 | `contact` | 텍스트 입력 (휴대폰 번호 or 이메일 등) |
+
+### ✅ 유효성 검사
+
+- 이름과 연락처 모두 입력하지 않으면 `alert()`로 안내 후 전송 불가
+
+```javascript
+if (!form.value.name || !form.value.contact) {
+  alert('이름과 연락처를 입력해주세요.');
+  return;
+}
+```
+
+### ✅ 신청 처리
+
+- `POST /api/applications` 요청 전송
+- `studyId`는 현재 경로의 ID를 기준으로 포함
+- 전송할 데이터 형식:
+
+```json
+{
+  "studyId": 4,
+  "name": "홍길동",
+  "contact": "010-1234-5678"
+}
+```
+
+- 전송 성공 시 `alert('신청이 완료되었습니다!')`
+- 이후 상세 페이지(`/studies/:id`)로 이동
+
+### ✅ 신청자 목록 표시
+
+- 상세 페이지 하단에 신청자 리스트 표시
+- 데이터는 `/api/applications?studyId={id}`로 요청
+- 항목 예시 출력:
+
+```html
+<ul>
+  <li>홍길동 (010-1111-1111)</li>
+  <li>김코딩 (010-2222-2222)</li>
+</ul>
+```
+
+- 신청자가 아무도 없을 경우 아래 문구 표시:
+
+```
+아직 신청자가 없습니다.
 ```
 
 ## 📁 전체 폴더 구조
@@ -197,6 +268,7 @@ MiniMall/
 │   ├── data/
 │   │   └── products.json             # 스터디 리스트 JSON 데이터
 │   ├── pages/
+|   │   ├── StudyEdit.vue             # 스터디 신청 페이지
 |   │   ├── StudyEdit.vue             # 스터디 수정 페이지
 |   │   ├── StudyAdd.vue              # 스터디 등록 페이지
 |   │   ├── StudyList.vue             # 스터디 리스트 페이지
