@@ -11,9 +11,16 @@
       <li class="list-group-item">❤️ 좋아요: {{ study.likes }}</li>
     </ul>
 
-    <span class="badge" :class="isClosed ? 'bg-secondary' : 'bg-success'">
-      {{ isClosed ? '모집 마감' : 'D-' + dday }}
-    </span>
+    <!-- ✅ 좋아요 버튼 -->
+    <button class="btn btn-outline-danger mb-3" @click="likeHandler">
+      ❤️ 좋아요 누르기
+    </button>
+
+    <div class="mb-3">
+      <span class="badge" :class="isClosed ? 'bg-secondary' : 'bg-success'">
+        {{ isClosed ? '모집 마감' : 'D-' + dday }}
+      </span>
+    </div>
 
     <div class="mt-3">
       <router-link to="/studies" class="btn btn-outline-secondary"
@@ -25,12 +32,15 @@
 
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, inject } from 'vue';
 import axios from 'axios';
 
 const route = useRoute();
 const router = useRouter();
 const study = ref(null);
+
+// 목록 다시 불러오는 함수 (actions에서 inject)
+const { fetchStudyList } = inject('actions');
 
 onMounted(async () => {
   try {
@@ -41,6 +51,19 @@ onMounted(async () => {
     router.push('/studies');
   }
 });
+
+// 좋아요 후 목록 새로고침까지 처리
+const likeHandler = async () => {
+  const updated = { ...study.value, likes: study.value.likes + 1 };
+  try {
+    await axios.put(`/api/studies/${study.value.id}`, updated);
+    study.value.likes++;
+
+    fetchStudyList(); // 목록에 반영되도록 다시 불러오기
+  } catch (e) {
+    alert('좋아요 처리 중 오류가 발생했습니다.');
+  }
+};
 
 const isClosed = computed(() => {
   if (!study.value) return false;

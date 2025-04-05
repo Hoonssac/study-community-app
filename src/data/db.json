@@ -37,7 +37,7 @@
       "category": "AI",
       "dueDate": "2025-04-15",
       "createdAt": "2025-03-21",
-      "likes": 10,
+      "likes": 11,
       "max": 12
     },
     {
@@ -47,7 +47,7 @@
       "category": "CS",
       "dueDate": "2025-04-13",
       "createdAt": "2025-03-19",
-      "likes": 6,
+      "likes": 7,
       "max": 6
     },
     {
@@ -87,7 +87,7 @@
       "category": "자격증",
       "dueDate": "2025-04-19",
       "createdAt": "2025-03-23",
-      "likes": 3,
+      "likes": 12,
       "max": 15
     },
     {
@@ -99,6 +99,16 @@
       "createdAt": "2025-03-29",
       "likes": 9,
       "max": 6
+    },
+    {
+      "id": "aa85",
+      "title": "수박게임 스터디",
+      "desc": "여름엔 수박이 최고",
+      "category": "데이터 분석",
+      "dueDate": "2025-04-06",
+      "max": 320,
+      "likes": 53,
+      "createdAt": "2025-04-05"
     }
   ],
   "applications": [

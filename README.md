@@ -95,6 +95,44 @@
 </router-link>
 ```
 
+## 📌 3. 상세 페이지 좋아요 기능 구현
+
+### ✅ 좋아요 버튼 표시
+
+- `/studies/:id` 상세 페이지(`StudyDetail.vue`)에 ❤️ **좋아요 버튼**을 표시한다.
+- 버튼 텍스트 예: `"❤️ 좋아요 누르기"`
+- 버튼은 스터디 정보 아래에 위치시킨다.
+
+### ✅ 좋아요 처리 로직
+
+- 버튼을 클릭하면 해당 스터디의 `likes` 수를 `+1` 증가시킨다.
+- 증가된 값은 즉시 화면에 반영되어야 한다.
+- 서버에도 `axios.put()` 요청으로 반영해야 한다.
+
+```
+const updated = { ...study.value, likes: study.value.likes + 1 }
+await axios.put(`/api/studies/${id}`, updated)
+study.value.likes++
+```
+
+### ✅ 목록 페이지 동기화 처리
+
+- 좋아요 버튼 클릭 후 목록 페이지(`/studies`)로 돌아갔을 때,
+  **좋아요 수가 최신 상태로 반영되어 있어야 한다.**
+- 이를 위해 상위에서 제공한 `fetchStudyList()` 함수를 **좋아요 클릭 후에 호출**한다.
+
+```
+const { fetchStudyList } = inject('actions')
+
+await axios.put(...)
+study.value.likes++
+fetchStudyList() // ✅ 목록 새로고침
+```
+
+### ✅ 새로고침해도 반영 유지
+
+- 좋아요 수는 서버(JSON Server)에 반영되므로, 새로고침해도 반영된 상태 유지
+
 ---
 
 ## 📁 전체 폴더 구조
