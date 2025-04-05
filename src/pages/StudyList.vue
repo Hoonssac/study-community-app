@@ -1,13 +1,18 @@
 <template>
   <div class="container mt-4">
-    <h2>스터디 목록</h2>
+    <h2>📚 스터디 목록</h2>
+
+    <!-- 스터디 등록 버튼 -->
+    <router-link to="/studies/add" class="btn btn-primary mb-3">
+      ➕ 스터디 등록
+    </router-link>
 
     <!-- 필터 및 정렬 UI -->
     <div class="d-flex justify-content-between my-3">
       <div>
         <!-- 모집 중인 스터디만 보기 필터 -->
         <input type="checkbox" id="filter" v-model="filterOpenOnly" />
-        <label for="filter">모집 중만 보기</label>
+        <label for="filter"> 모집 중만 보기</label>
       </div>
 
       <!-- 정렬 옵션 선택 -->

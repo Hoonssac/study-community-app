@@ -22,9 +22,26 @@ const fetchStudyList = async () => {
   }
 };
 
+// 동록 함수 추가
+const addStudy = async (studyData, successCallback) => {
+  const payload = {
+    ...studyData,
+    likes: 0,
+    createdAt: new Date().toISOString().split('T')[0],
+  };
+  try {
+    const res = await axios.post('/api/studies', payload);
+    states.studyList.push(res.data);
+    successCallback();
+  } catch (e) {
+    alert('등록 실패');
+  }
+};
+
 provide(
   'studyList',
   computed(() => states.studyList)
 );
+provide('actions', { addStudy, fetchStudyList });
 onMounted(fetchStudyList);
 </script>
