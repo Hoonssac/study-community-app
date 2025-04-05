@@ -48,25 +48,19 @@ Vue.js로 스터디 모집 커뮤니티 "스터디제이"를 만들어보자!
 
 ```
 MiniMall/
-├── public/
-│   └── index.html
 ├── src/
 │   ├── assets/
 │   │   └── (이미지, 스타일 등)
 │   ├── components/
-│   │   └── Header.vue                # 상단 고정 메뉴
+│   │   └── StudyCard.vue             # 재사용 스터디 카드
 │   ├── data/
-│   │   └── products.json             # 상품 리스트 JSON 데이터
+│   │   └── products.json             # 스터디 리스트 JSON 데이터
 │   ├── pages/
-│   │   ├── Home.vue                  # 메인 페이지
-│   │   ├── Products.vue              # 상품 목록 페이지
-|   │   ├── CategoryFilter.vue        # 왼쪽 카테고리 필터 (left view)
-│   |   ├── ProductDescription.vue    # 중첩 탭 - 상세정보
-|   │   ├── ProductReview.vue          # 중첩 탭 - 리뷰
-│   │   └── ProductDetail.vue         # 상품 상세 페이지 (동적 라우트)
+|   │   ├── StudyList.vue             # 스터디 리스트 페이지
+│   │   └── StudyDetail.vue           # 스터디 상세 페이지 (동적 라우트)
 │   ├── router/
 │   │   └── index.js                  # 라우터 설정
-│   ├── App.vue                       # 전체 레이아웃 (Header + router-view)
+│   ├── App.vue                       # 전체 레이아웃
 │   └── main.js                       # 앱 진입점
 ├── package.json
 └── vite.config.js (또는 vue.config.js)
