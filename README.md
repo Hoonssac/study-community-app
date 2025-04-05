@@ -135,6 +135,56 @@ fetchStudyList() // ✅ 목록 새로고침
 
 ---
 
+## 📌 4. 스터디 수정 기능 구현 + 목록 반영 처리
+
+### ✅ 수정 페이지 구성
+
+- 주소: `/studies/:id/edit`
+- 해당 스터디 ID를 기준으로 데이터를 가져와 폼에 출력
+- 수정 후 저장 시 서버에 반영하고, 상세 페이지(`/studies/:id`)로 이동
+
+### ✅ 폼 구성 요소
+
+### ✅ 2. 폼 구성 요소
+
+| 항목        | 필드명     | 입력 형태                     |
+| ----------- | ---------- | ----------------------------- |
+| 스터디명    | `title`    | 텍스트                        |
+| 설명        | `desc`     | 텍스트에어리어                |
+| 카테고리    | `category` | `<select>` — 반드시 `CS` 포함 |
+| 마감일      | `dueDate`  | `<input type="date">`         |
+| 최대 인원수 | `max`      | `<input type="number">`       |
+
+- 모든 항목은 필수 입력
+- 수정 전 값이 모두 **자동으로 채워져 있어야 함**
+
+### ✅ 유효성 검사
+
+- 항목이 비어 있으면 등록 불가 (alert)
+- 마감일이 오늘보다 이전이면 등록 불가
+
+### ✅ 저장 처리 로직
+
+- 수정된 데이터로 `axios.put('/api/studies/:id')` 요청 전송
+- 전송 데이터는 기존에 있던 `likes`, `createdAt`, `id` 값도 포함
+- 성공 시 `/studies/:id` 페이지로 이동
+
+### ✅ 목록 자동 반영
+
+- 수정 완료 후 `fetchStudyList()` 함수를 호출하여
+  `studyList`가 최신 상태로 갱신되어야 함
+- 그렇지 않으면 목록에 이전 정보가 그대로 남을 수 있음
+
+### ✅ 상세 페이지에서 “수정하기” 버튼 표시
+
+- `/studies/:id` 페이지에 수정 버튼 추가
+
+```
+<router-link :to="`/studies/${study.id}/edit`" class="btn btn-warning">
+  ✏️ 수정하기
+</router-link>
+```
+
 ## 📁 전체 폴더 구조
 
 ```
@@ -147,6 +197,8 @@ MiniMall/
 │   ├── data/
 │   │   └── products.json             # 스터디 리스트 JSON 데이터
 │   ├── pages/
+|   │   ├── StudyEdit.vue             # 스터디 수정 페이지
+|   │   ├── StudyAdd.vue              # 스터디 등록 페이지
 |   │   ├── StudyList.vue             # 스터디 리스트 페이지
 │   │   └── StudyDetail.vue           # 스터디 상세 페이지 (동적 라우트)
 │   ├── router/
